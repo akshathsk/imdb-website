@@ -57,7 +57,7 @@ export default function App(this: any) {
         });
     getMovieList(count);
     getGenreList();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSearchChange(event: any) {
     const { value } = event.target;
