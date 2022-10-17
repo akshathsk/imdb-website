@@ -12,7 +12,7 @@ export default function Search(props: any) {
       ...props.options,
       [target.name]: target.value,
     });
-    if (target.type == "radio") {
+    if (target.type === "radio") {
       setSortOrder(target.value);
     } else {
       setSortType(target.value);
@@ -46,7 +46,7 @@ export default function Search(props: any) {
               name="sortValue"
               value="ASC"
               onChange={(e) => onOptionValueChange(e)}
-              checked={sortOrder == "ASC"}
+              checked={sortOrder === "ASC"}
             ></input>
             <label>ASC</label>
           </div>
@@ -58,7 +58,7 @@ export default function Search(props: any) {
               name="sortValue"
               value="DESC"
               onChange={(e) => onOptionValueChange(e)}
-              checked={sortOrder == "DESC"}
+              checked={sortOrder === "DESC"}
             ></input>
             <label>DESC</label>
           </div>

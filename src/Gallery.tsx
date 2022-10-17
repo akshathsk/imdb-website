@@ -8,7 +8,7 @@ export default function Gallery(props: any) {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (movieId != 0) {
+    if (movieId !== 0) {
       navigate("/detailed/" + movieId);
     }
   }, [movieId]);
@@ -38,8 +38,8 @@ export default function Gallery(props: any) {
   props.filteredMovieList.sort(
     sort_by(
       props.options.sortBy,
-      props.options.sortValue == "DESC",
-      props.options.sortBy == "title" ? (a: any) => a.toUpperCase() : parseFloat
+      props.options.sortValue === "DESC",
+      props.options.sortBy === "title" ? (a: any) => a.toUpperCase() : parseFloat
     )
   );
 

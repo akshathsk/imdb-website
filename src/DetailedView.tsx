@@ -12,7 +12,7 @@ export default function DetailedView(props: any) {
   const [movieDetails, setMovieDetails] = useState<any>(movieList[index]);
 
   function onClickPrevHandler() {
-    if (index == 0) {
+    if (index === 0) {
       setIndex(movieList.length - 1);
     } else {
       setIndex(index - 1);
@@ -22,7 +22,7 @@ export default function DetailedView(props: any) {
   }
 
   function onClickNextHandler() {
-    if (index == movieList.length - 1) {
+    if (index === movieList.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);

@@ -9,7 +9,7 @@ export default function FilterView(props: any) {
 
   function onGenreChange(e: any) {
     const value = e.target.name;
-    if (value == "All") {
+    if (value === "All") {
       setFilteredMovieList([...movieList]);
     } else {
       const filtered = movieList.filter((movie: any) =>
