@@ -17,48 +17,47 @@ export default function App(this: any) {
   const [genre, setGenre] = useState(genreResult);
   const [loading, setLoading] = useState(true);
 
-  var count = 1;
   useEffect(() => {
+    var count = 1;
+    const api = axios.create({
+      baseURL: "https://api.themoviedb.org/",
+    });
+
+    const getMovieList = (pageNumber: any) =>
+      api
+        .get(
+          "3/discover/movie?api_key=fded5dbbbb84c28c911ba119033c2f13&language=en-US&page=" +
+            pageNumber
+        )
+        .then((res) => {
+          var arr = movieList;
+          var ids = movieList.map((movie) => movie.id);
+          var result = res.data.results;
+          result.forEach((element: any) => {
+            if (!ids.includes(element.id)) {
+              arr.push(element);
+            }
+          });
+          setMovieList(arr);
+          setFilteredMovieList(arr);
+          if (movieList.length >= 99) {
+            setLoading(false);
+          } else {
+            getMovieList(count++);
+          }
+        });
+
+    const getGenreList = () =>
+      api
+        .get(
+          "3/genre/movie/list?api_key=fded5dbbbb84c28c911ba119033c2f13&language=en-US"
+        )
+        .then((res) => {
+          setGenre([...res.data.genres]);
+        });
     getMovieList(count);
     getGenreList();
   }, []);
-
-  const api = axios.create({
-    baseURL: "https://api.themoviedb.org/",
-  });
-
-  const getMovieList = (pageNumber: any) =>
-    api
-      .get(
-        "3/discover/movie?api_key=fded5dbbbb84c28c911ba119033c2f13&language=en-US&page=" +
-          pageNumber
-      )
-      .then((res) => {
-        var arr = movieList;
-        var ids = movieList.map((movie) => movie.id);
-        var result = res.data.results;
-        result.forEach((element: any) => {
-          if (!ids.includes(element.id)) {
-            arr.push(element);
-          }
-        });
-        setMovieList(arr);
-        setFilteredMovieList(arr);
-        if (movieList.length >= 99) {
-          setLoading(false);
-        } else {
-          getMovieList(count++);
-        }
-      });
-
-  const getGenreList = () =>
-    api
-      .get(
-        "3/genre/movie/list?api_key=fded5dbbbb84c28c911ba119033c2f13&language=en-US"
-      )
-      .then((res) => {
-        setGenre([...res.data.genres]);
-      });
 
   function handleSearchChange(event: any) {
     const { value } = event.target;

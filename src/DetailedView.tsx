@@ -31,9 +31,8 @@ export default function DetailedView(props: any) {
     setMovieDetails(movieList[index]);
   }
 
-  let navigate = useNavigate();
-
   useEffect(() => {
+    let navigate = useNavigate();
     navigate("/detailed/" + movieDetails.id);
   }, [movieDetails]);
 
@@ -61,6 +60,7 @@ export default function DetailedView(props: any) {
         <div>
           <img
             className="img-config"
+            alt={movieDetails.poster_path}
             src={"https://image.tmdb.org/t/p/w500/" + movieDetails.poster_path}
           />
         </div>

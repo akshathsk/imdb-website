@@ -5,9 +5,8 @@ import "./Gallery.css";
 export default function Gallery(props: any) {
   const [movieId, setMovieId] = useState(0);
 
-  let navigate = useNavigate();
-
   useEffect(() => {
+    let navigate = useNavigate();
     if (movieId !== 0) {
       navigate("/detailed/" + movieId);
     }
@@ -39,7 +38,9 @@ export default function Gallery(props: any) {
     sort_by(
       props.options.sortBy,
       props.options.sortValue === "DESC",
-      props.options.sortBy === "title" ? (a: any) => a.toUpperCase() : parseFloat
+      props.options.sortBy === "title"
+        ? (a: any) => a.toUpperCase()
+        : parseFloat
     )
   );
 
@@ -51,6 +52,7 @@ export default function Gallery(props: any) {
             <div className="text-container"> {movie.title} </div>
             <div>
               <img
+                alt={movie.poster_path}
                 onClick={(e) => onMovieClick(e)}
                 id={movie.id}
                 src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
