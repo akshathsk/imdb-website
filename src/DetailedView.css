@@ -1,0 +1,61 @@
+.detailed-view-container {
+  background-color: #13294b;
+  color: white;
+}
+
+.next-prev-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+}
+
+.next-prev-button {
+  background-color: rgba(128, 128, 128, 0.132);
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.title {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.detailed-view {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.img-config {
+  width: 500px;
+  height: 500px;
+  padding: 27px;
+}
+
+.details-text {
+    margin: 10px;
+    font-size: large;
+}
+
+.details {
+    text-align: center;
+}
+
+.heading {
+    font-weight: bold;
+}
+
+.margin {
+    margin: 25px;
+}

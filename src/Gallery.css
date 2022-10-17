@@ -1,0 +1,34 @@
+.gallery-container {
+  padding: 10px;
+  background-color: #13294b;
+  height: 100%;
+}
+
+.gallery-main-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.gallery-tile {
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text-container {
+  padding: 5px;
+  font-size: medium;
+}
+
+.image-container {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
