@@ -5,8 +5,8 @@ import "./Gallery.css";
 export default function Gallery(props: any) {
   const [movieId, setMovieId] = useState(0);
 
+  let navigate = useNavigate();
   useEffect(() => {
-    let navigate = useNavigate();
     if (movieId !== 0) {
       navigate("/detailed/" + movieId);
     }

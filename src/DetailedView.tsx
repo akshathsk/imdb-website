@@ -31,8 +31,8 @@ export default function DetailedView(props: any) {
     setMovieDetails(movieList[index]);
   }
 
+  const navigate = useNavigate();
   useEffect(() => {
-    let navigate = useNavigate();
     navigate("/detailed/" + movieDetails.id);
   }, [movieDetails]);
 
