@@ -10,7 +10,7 @@ export default function Gallery(props: any) {
     if (movieId !== 0) {
       navigate("/detailed/" + movieId);
     }
-  }, [movieId]);
+  }, [movieId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function onMovieClick(e: any) {
     setMovieId(e.target.id);

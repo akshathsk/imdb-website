@@ -34,7 +34,7 @@ export default function DetailedView(props: any) {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/detailed/" + movieDetails.id);
-  }, [movieDetails]);
+  }, [movieDetails]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="detailed-view-container">
