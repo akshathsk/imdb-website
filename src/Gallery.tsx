@@ -8,7 +8,7 @@ export default function Gallery(props: any) {
   let navigate = useNavigate();
   useEffect(() => {
     if (movieId !== 0) {
-      navigate("/detailed/" + movieId);
+      navigate("/mp2/detailed/" + movieId);
     }
   }, [movieId]); // eslint-disable-line react-hooks/exhaustive-deps
 

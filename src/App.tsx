@@ -82,16 +82,16 @@ export default function App(this: any) {
               <Header />
             </header>
             <div className="link-container">
-              <Link to="/">
+              <Link to="/mp2/">
                 <div className="link">SEARCH</div>
               </Link>
-              <Link to="/gallery">
+              <Link to="/mp2/gallery">
                 <div className="link">GALLERY</div>
               </Link>
             </div>
             <Routes>
               <Route
-                path="/"
+                path="/mp2/"
                 element={
                   <Search
                     handleSearchChange={handleSearchChange}
@@ -102,11 +102,11 @@ export default function App(this: any) {
                 }
               />
               <Route
-                path="/gallery"
+                path="/mp2/gallery"
                 element={<FilterView genre={genre} movieList={movieList} />}
               />
               <Route
-                path="/detailed/:movieId"
+                path="/mp2/detailed/:movieId"
                 element={<DetailedView movieList={movieList} />}
               />
             </Routes>

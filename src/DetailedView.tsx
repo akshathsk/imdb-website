@@ -33,7 +33,7 @@ export default function DetailedView(props: any) {
 
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/detailed/" + movieDetails.id);
+    navigate("/mp2/detailed/" + movieDetails.id);
   }, [movieDetails]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
