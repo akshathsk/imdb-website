@@ -17,7 +17,6 @@ export default function DetailedView(props: any) {
     } else {
       setIndex(index - 1);
     }
-    console.log(index);
     setMovieDetails(movieList[index]);
   }
 
@@ -27,7 +26,6 @@ export default function DetailedView(props: any) {
     } else {
       setIndex(index + 1);
     }
-    console.log(index);
     setMovieDetails(movieList[index]);
   }
 

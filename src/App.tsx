@@ -34,7 +34,7 @@ export default function App(this: any) {
           var ids = movieList.map((movie) => movie.id);
           var result = res.data.results;
           result.forEach((element: any) => {
-            if (!ids.includes(element.id)) {
+            if (element.title.length < 25 && !ids.includes(element.id)) {
               arr.push(element);
             }
           });
