@@ -12,19 +12,42 @@ import {
 import Header from "../Header/Header";
 import FilterView from "../FilterView/FilterView";
 import DetailedView from "../DetailedView/DetailedView";
-import PropTypes from "prop-types";
+import PropTypes, { InferProps } from "prop-types";
+
+interface GenreProps {
+  id?: number;
+  name: string;
+}
 
 export default function App(this: any) {
-  let result: any[] = [];
-  const [movieList, setMovieList] = useState(result);
-  let filteredResult: any[] = [];
-  const [filteredMovieList, setFilteredMovieList] = useState(filteredResult);
+  const MoviePropTypes = {
+    adult: PropTypes.bool,
+    backdrop_path: PropTypes.string,
+    genre_ids: PropTypes.array,
+    id: PropTypes.number.isRequired,
+    original_language: PropTypes.string,
+    original_title: PropTypes.string,
+    overview: PropTypes.string,
+    popularity: PropTypes.number,
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    title: PropTypes.string,
+    video: PropTypes.bool,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+  };
+  type MovieTypes = InferProps<typeof MoviePropTypes>;
+  const [movieList, setMovieList] = useState<MovieTypes[]>([]);
+  const [filteredMovieList, setFilteredMovieList] = useState<MovieTypes[]>([]);
   const [options, setOptions] = useState({ sortBy: "title", sortValue: "ASC" });
-  const genreResult: any[] = [];
-  const [genre, setGenre] = useState(genreResult);
+  const GenrePropTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string,
+  };
+  const [genre, setGenre] = useState<GenreProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [movieId, setMovieId] = useState();
+  const [movieId, setMovieId] = useState<any>();
   const [index, setIndex] = useState<any>();
   const [movieDetails, setMovieDetails] = useState<any>();
   const [forceNav, setForceNav] = useState(false);
@@ -65,7 +88,10 @@ export default function App(this: any) {
           "3/genre/movie/list?api_key=fded5dbbbb84c28c911ba119033c2f13&language=en-US"
         )
         .then((res) => {
-          setGenre([...res.data.genres]);
+          const test =
+            '{"genres":[{"id":"28","name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"ScienceFiction"},{"id":10770,"name":"TVMovie"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}]}';
+          var obj = JSON.parse(test);
+          setGenre([...obj.genres]);
         });
     getMovieList(count);
     getGenreList();
@@ -98,7 +124,7 @@ export default function App(this: any) {
   function setIndexHandler(idx: any) {
     setIndex(idx);
     setMovieDetails(movieList[idx]);
-    setMovieId(movieList[idx].id);
+    setMovieId(movieList[idx].id.toString());
   }
   const location = useLocation();
 
@@ -175,56 +201,3 @@ export default function App(this: any) {
     </>
   );
 }
-
-App.propTypes = {
-  movieList: PropTypes.arrayOf(
-    PropTypes.shape({
-      adult: PropTypes.bool,
-      backdrop_path: PropTypes.string,
-      genre_ids: PropTypes.array,
-      id: PropTypes.number.isRequired,
-      original_language: PropTypes.string,
-      original_title: PropTypes.string,
-      overview: PropTypes.string,
-      popularity: PropTypes.number,
-      poster_path: PropTypes.string,
-      release_date: PropTypes.string,
-      title: PropTypes.string,
-      video: PropTypes.bool,
-      vote_average: PropTypes.number,
-      vote_count: PropTypes.number,
-    })
-  ).isRequired,
-
-  filteredMovieList: PropTypes.arrayOf(
-    PropTypes.shape({
-      adult: PropTypes.bool,
-      backdrop_path: PropTypes.string,
-      genre_ids: PropTypes.array,
-      id: PropTypes.number.isRequired,
-      original_language: PropTypes.string,
-      original_title: PropTypes.string,
-      overview: PropTypes.string,
-      popularity: PropTypes.number,
-      poster_path: PropTypes.string,
-      release_date: PropTypes.string,
-      title: PropTypes.string,
-      video: PropTypes.bool,
-      vote_average: PropTypes.number,
-      vote_count: PropTypes.number,
-    })
-  ).isRequired,
-
-  genre: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string,
-    })
-  ).isRequired,
-};
-
-App.defaultProps = {
-  movieList: [],
-  filteredMovieList: [],
-  genre: [],
-};

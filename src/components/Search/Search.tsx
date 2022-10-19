@@ -48,7 +48,7 @@ export default function Search(props: any) {
               onChange={(e) => onOptionValueChange(e)}
               checked={sortOrder === "ASC"}
             ></input>
-            <label>ASC</label>
+            <label>ASCENDING</label>
           </div>
 
           <div>
@@ -60,7 +60,7 @@ export default function Search(props: any) {
               onChange={(e) => onOptionValueChange(e)}
               checked={sortOrder === "DESC"}
             ></input>
-            <label>DESC</label>
+            <label>DESCENDING</label>
           </div>
         </div>
       </div>

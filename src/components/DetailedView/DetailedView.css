@@ -11,6 +11,8 @@
   padding: 5px;
 }
 
+
+
 .next-prev-button {
   background-color: rgba(128, 128, 128, 0.132);
   border: none;
@@ -22,6 +24,10 @@
   font-size: 16px;
   margin: 5px;
   cursor: pointer;
+}
+
+.next-prev-button:hover {
+  background-color: rgba(255, 255, 255, 0.104);
 }
 
 .title {

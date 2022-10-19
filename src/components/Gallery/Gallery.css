@@ -32,3 +32,11 @@
   height: 200px;
   cursor: pointer;
 }
+
+.image-container:first-child {
+  transition: .2s;
+}
+
+.image-container:first-child:hover{
+  transform: scale(1.25);
+}
