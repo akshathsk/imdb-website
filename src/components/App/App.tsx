@@ -40,10 +40,6 @@ export default function App(this: any) {
   const [movieList, setMovieList] = useState<MovieTypes[]>([]);
   const [filteredMovieList, setFilteredMovieList] = useState<MovieTypes[]>([]);
   const [options, setOptions] = useState({ sortBy: "title", sortValue: "ASC" });
-  const GenrePropTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string,
-  };
   const [genre, setGenre] = useState<GenreProps[]>([]);
   const [loading, setLoading] = useState(true);
 
