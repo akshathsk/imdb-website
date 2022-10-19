@@ -34,9 +34,9 @@
 }
 
 .image-container:first-child {
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.image-container:first-child:hover{
+.image-container:first-child:hover {
   transform: scale(1.25);
 }
