@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./DetailedView.css";
 
 export default function DetailedView(props: any) {
-  const { movieList, genre } = props;
+  const {
+    movieList,
+    genre,
+    index,
+    movieDetails,
+    setMovieIdHandler,
+    setIndexHandler,
+  } = props;
   const params = useParams();
-  var movieId: number = parseInt(params.movieId!, 10);
-
-  const [index, setIndex] = useState(
-    movieList.findIndex((m: any) => m.id === movieId)
-  );
-  const [movieDetails, setMovieDetails] = useState<any>(movieList[index]);
 
   function getGenere(genereIdArray: any) {
     let genreResult: any[] = [];
@@ -22,6 +23,10 @@ export default function DetailedView(props: any) {
     return genreResult.toString();
   }
 
+  useEffect(() => {
+    setMovieIdHandler(params.movieId);
+  }, [params.movieId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   function onClickPrevHandler() {
     let idx = index;
     if (idx === 0) {
@@ -29,8 +34,7 @@ export default function DetailedView(props: any) {
     } else {
       idx = idx - 1;
     }
-    setIndex(idx);
-    setMovieDetails(movieList[idx]);
+    setIndexHandler(idx);
   }
 
   function onClickNextHandler() {
@@ -38,14 +42,8 @@ export default function DetailedView(props: any) {
     if (idx === movieList.length) {
       idx = 0;
     }
-    setIndex(idx);
-    setMovieDetails(movieList[idx]);
+    setIndexHandler(idx);
   }
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/mp2/detailed/" + movieDetails.id);
-  }, [movieDetails]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="detailed-view-container">

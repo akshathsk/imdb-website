@@ -68,6 +68,7 @@ export default function Search(props: any) {
         <Gallery
           filteredMovieList={props.filteredMovieList}
           options={props.options}
+          setMovieIdHandler={props.setMovieIdHandler}
         />
       </div>
     </div>

@@ -44,7 +44,11 @@ export default function FilterView(props: any) {
         ))}
       </div>
       <div className="gallery-container">
-        <Gallery filteredMovieList={filteredMovieList} options={options} />
+        <Gallery
+          filteredMovieList={filteredMovieList}
+          options={options}
+          setMovieIdHandler={props.setMovieIdHandler}
+        />
       </div>
     </div>
   );

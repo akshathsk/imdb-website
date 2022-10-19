@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Search from "../Search/Search";
 import axios from "axios";
-import { Link, Routes, Route } from "react-router-dom";
+import {
+  Link,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import Header from "../Header/Header";
 import FilterView from "../FilterView/FilterView";
 import DetailedView from "../DetailedView/DetailedView";
@@ -17,6 +23,11 @@ export default function App(this: any) {
   const genreResult: any[] = [];
   const [genre, setGenre] = useState(genreResult);
   const [loading, setLoading] = useState(true);
+
+  const [movieId, setMovieId] = useState();
+  const [index, setIndex] = useState<any>();
+  const [movieDetails, setMovieDetails] = useState<any>();
+  const [forceNav, setForceNav] = useState(false);
 
   useEffect(() => {
     var count = 1;
@@ -74,6 +85,37 @@ export default function App(this: any) {
     setOptions({ sortBy, sortValue });
   }
 
+  const navigate = useNavigate();
+  function setMovieIdHandler(movieId: any) {
+    setMovieId(movieId);
+    let idx = movieList.findIndex((m: any) => m.id === parseInt(movieId, 10));
+    setIndex(idx);
+
+    setMovieDetails(movieList[idx]);
+    setForceNav(!forceNav);
+  }
+
+  function setIndexHandler(idx: any) {
+    setIndex(idx);
+    setMovieDetails(movieList[idx]);
+    setMovieId(movieList[idx].id);
+  }
+  const location = useLocation();
+
+  useEffect(() => {
+    let id =
+      location.pathname.split("/").length > 3
+        ? location.pathname.split("/")[3]
+        : undefined;
+    if (movieDetails !== undefined) {
+      if (id === undefined) {
+        navigate("/mp2/detailed/" + movieId);
+      } else if (parseInt(movieId!, 10) !== parseInt(id, 10)) {
+        navigate("/mp2/detailed/" + movieId);
+      }
+    }
+  }, [forceNav, movieId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       {!loading && (
@@ -99,16 +141,32 @@ export default function App(this: any) {
                     handleOptionsChange={handleOptionsChange}
                     options={options}
                     filteredMovieList={filteredMovieList}
+                    setMovieIdHandler={setMovieIdHandler}
                   />
                 }
               />
               <Route
                 path="/mp2/gallery"
-                element={<FilterView genre={genre} movieList={movieList} />}
+                element={
+                  <FilterView
+                    genre={genre}
+                    movieList={movieList}
+                    setMovieIdHandler={setMovieIdHandler}
+                  />
+                }
               />
               <Route
                 path="/mp2/detailed/:movieId"
-                element={<DetailedView movieList={movieList} genre={genre} />}
+                element={
+                  <DetailedView
+                    movieList={movieList}
+                    genre={genre}
+                    index={index}
+                    movieDetails={movieDetails}
+                    setMovieIdHandler={setMovieIdHandler}
+                    setIndexHandler={setIndexHandler}
+                  />
+                }
               />
             </Routes>
           </div>

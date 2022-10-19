@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Gallery.css";
 
 export default function Gallery(props: any) {
-  const [movieId, setMovieId] = useState(0);
-
-  let navigate = useNavigate();
-  useEffect(() => {
-    if (movieId !== 0) {
-      navigate("/mp2/detailed/" + movieId);
-    }
-  }, [movieId]); // eslint-disable-line react-hooks/exhaustive-deps
-
   function onMovieClick(e: any) {
-    setMovieId(e.target.id);
+    const { setMovieIdHandler } = props;
+    setMovieIdHandler(e.target.id);
   }
 
   const sort_by = (field: any, reverse: any, primer: any) => {
