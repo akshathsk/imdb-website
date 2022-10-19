@@ -69,7 +69,7 @@ export default function App(this: any) {
             }
           });
           setMovieList(arr);
-          setFilteredMovieList(arr);
+          // setFilteredMovieList(arr);
           if (movieList.length >= 99) {
             setLoading(false);
           } else {
@@ -91,12 +91,16 @@ export default function App(this: any) {
 
   function handleSearchChange(event: any) {
     const { value } = event.target;
-    const filtered = movieList.filter(
-      (movie: any) =>
-        movie.title.toLowerCase().includes(value.toLowerCase()) ||
-        movie.original_title.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredMovieList(filtered);
+    if (!value) {
+      setFilteredMovieList([]);
+    } else {
+      const filtered = movieList.filter(
+        (movie: any) =>
+          movie.title.toLowerCase().includes(value.toLowerCase()) ||
+          movie.original_title.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredMovieList(filtered);
+    }
   }
 
   function handleOptionsChange({ sortBy, sortValue }: any) {
