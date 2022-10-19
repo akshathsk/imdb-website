@@ -6,6 +6,7 @@ export default function DetailedView(props: any) {
   const { movieList, genre } = props;
   const params = useParams();
   var movieId: number = parseInt(params.movieId!, 10);
+
   const [index, setIndex] = useState(
     movieList.findIndex((m: any) => m.id === movieId)
   );
@@ -54,14 +55,14 @@ export default function DetailedView(props: any) {
           onClick={() => onClickPrevHandler()}
           className="next-prev-button"
         >
-          Back
+          <i className="arrow left"></i>
         </button>
         <button
           type="button"
           onClick={() => onClickNextHandler()}
           className="next-prev-button"
         >
-          Next
+          <i className="arrow right"></i>
         </button>
       </div>
 
@@ -82,6 +83,10 @@ export default function DetailedView(props: any) {
           <div className="margin">
             <span className="heading">Original Title : </span>
             <span>{movieDetails.original_title}</span>
+          </div>
+          <div className="margin">
+            <span className="heading">Release Date : </span>
+            <span>{movieDetails.release_date}</span>
           </div>
           <div className="margin">
             <span className="heading">Vote Average : </span>

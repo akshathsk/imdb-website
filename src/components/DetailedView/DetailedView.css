@@ -26,9 +26,10 @@
 
 .title {
   text-align: center;
-  font-size: larger;
+  font-size: 25px;
   font-weight: bold;
   margin: 10px;
+  text-decoration: underline;
 }
 
 .detailed-view {
@@ -59,4 +60,21 @@
 
 .margin {
   margin: 25px;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
