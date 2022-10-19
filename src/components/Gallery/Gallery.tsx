@@ -48,7 +48,7 @@ export default function Gallery(props: any) {
     <div className="gallery-main-container">
       {props.filteredMovieList.map((movie: any) => {
         return (
-          <div className="gallery-tile">
+          <div key={movie.id} className="gallery-tile">
             <div className="text-container"> {movie.title} </div>
             <div>
               <img

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Search from "./Search";
+import Search from "../Search/Search";
 import axios from "axios";
 import { Link, Routes, Route } from "react-router-dom";
-import Header from "./Header";
-import FilterView from "./FilterView";
-import DetailedView from "./DetailedView";
+import Header from "../Header/Header";
+import FilterView from "../FilterView/FilterView";
+import DetailedView from "../DetailedView/DetailedView";
+import PropTypes from "prop-types";
 
 export default function App(this: any) {
   let result: any[] = [];
@@ -107,7 +108,7 @@ export default function App(this: any) {
               />
               <Route
                 path="/mp2/detailed/:movieId"
-                element={<DetailedView movieList={movieList} />}
+                element={<DetailedView movieList={movieList} genre={genre} />}
               />
             </Routes>
           </div>
@@ -116,3 +117,56 @@ export default function App(this: any) {
     </>
   );
 }
+
+App.propTypes = {
+  movieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop_path: PropTypes.string,
+      genre_ids: PropTypes.array,
+      id: PropTypes.number.isRequired,
+      original_language: PropTypes.string,
+      original_title: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    })
+  ).isRequired,
+
+  filteredMovieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop_path: PropTypes.string,
+      genre_ids: PropTypes.array,
+      id: PropTypes.number.isRequired,
+      original_language: PropTypes.string,
+      original_title: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    })
+  ).isRequired,
+
+  genre: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string,
+    })
+  ).isRequired,
+};
+
+App.defaultProps = {
+  movieList: [],
+  filteredMovieList: [],
+  genre: [],
+};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Gallery from "./Gallery";
+import Gallery from "../Gallery/Gallery";
 import "./FilterView.css";
 
 export default function FilterView(props: any) {
@@ -32,7 +32,7 @@ export default function FilterView(props: any) {
           />
         </div>
         {genre.map((g: any) => (
-          <div className="button-container">
+          <div key={g.id} className="button-container">
             <input
               type="button"
               value={g.name}

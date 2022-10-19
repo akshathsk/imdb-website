@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./DetailedView.css";
 
 export default function DetailedView(props: any) {
-  const { movieList } = props;
+  const { movieList, genre } = props;
   const params = useParams();
   var movieId: number = parseInt(params.movieId!, 10);
   const [index, setIndex] = useState(
@@ -11,22 +11,34 @@ export default function DetailedView(props: any) {
   );
   const [movieDetails, setMovieDetails] = useState<any>(movieList[index]);
 
+  function getGenere(genereIdArray: any) {
+    let genreResult: any[] = [];
+    genre.forEach((element: any) => {
+      if (genereIdArray.includes(element.id)) {
+        genreResult.push(element.name);
+      }
+    });
+    return genreResult.toString();
+  }
+
   function onClickPrevHandler() {
-    if (index === 0) {
-      setIndex(movieList.length - 1);
+    let idx = index;
+    if (idx === 0) {
+      idx = movieList.length - 1;
     } else {
-      setIndex(index - 1);
+      idx = idx - 1;
     }
-    setMovieDetails(movieList[index]);
+    setIndex(idx);
+    setMovieDetails(movieList[idx]);
   }
 
   function onClickNextHandler() {
-    if (index === movieList.length - 1) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
+    let idx = index + 1;
+    if (idx === movieList.length) {
+      idx = 0;
     }
-    setMovieDetails(movieList[index]);
+    setIndex(idx);
+    setMovieDetails(movieList[idx]);
   }
 
   const navigate = useNavigate();
@@ -82,6 +94,10 @@ export default function DetailedView(props: any) {
           <div className="margin">
             <span className="heading">Popularity : </span>
             <span>{movieDetails.popularity}</span>
+          </div>
+          <div className="margin">
+            <span className="heading">Genere : </span>
+            <span>{getGenere(movieDetails.genre_ids)}</span>
           </div>
         </div>
       </div>
