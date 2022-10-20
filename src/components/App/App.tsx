@@ -14,11 +14,6 @@ import FilterView from "../FilterView/FilterView";
 import DetailedView from "../DetailedView/DetailedView";
 import PropTypes, { InferProps } from "prop-types";
 
-interface GenreProps {
-  id?: number;
-  name: string;
-}
-
 export default function App(this: any) {
   const MoviePropTypes = {
     adult: PropTypes.bool,
@@ -29,7 +24,7 @@ export default function App(this: any) {
     original_title: PropTypes.string,
     overview: PropTypes.string,
     popularity: PropTypes.number,
-    poster_path: PropTypes.string,
+    poster_path: PropTypes.string.isRequired,
     release_date: PropTypes.string,
     title: PropTypes.string,
     video: PropTypes.bool,
@@ -40,12 +35,12 @@ export default function App(this: any) {
   const [movieList, setMovieList] = useState<MovieTypes[]>([]);
   const [filteredMovieList, setFilteredMovieList] = useState<MovieTypes[]>([]);
   const [options, setOptions] = useState({ sortBy: "title", sortValue: "ASC" });
-  const [genre, setGenre] = useState<GenreProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [movieId, setMovieId] = useState<any>();
+  const [genre, setGenre] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [movieId, setMovieId] = useState<string>();
   const [index, setIndex] = useState<any>();
-  const [movieDetails, setMovieDetails] = useState<any>();
-  const [forceNav, setForceNav] = useState(false);
+  const [movieDetails, setMovieDetails] = useState<MovieTypes>();
+  const [forceNav, setForceNav] = useState<boolean>(false);
 
   useEffect(() => {
     var count = 1;

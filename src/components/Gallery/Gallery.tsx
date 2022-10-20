@@ -1,6 +1,34 @@
 import "./Gallery.css";
+import PropTypes, { InferProps } from "prop-types";
 
-export default function Gallery(props: any) {
+const GalleryPropTypes = {
+  filteredMovieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop_path: PropTypes.string,
+      genre_ids: PropTypes.array,
+      id: PropTypes.number.isRequired,
+      original_language: PropTypes.string,
+      original_title: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    })
+  ).isRequired,
+  setMovieIdHandler: PropTypes.func.isRequired,
+  options: PropTypes.shape({
+    sortBy: PropTypes.string,
+    sortValue: PropTypes.string,
+  }).isRequired,
+};
+type GalleryTypes = InferProps<typeof GalleryPropTypes>;
+
+export default function Gallery(props: GalleryTypes) {
   function onMovieClick(e: any) {
     const { setMovieIdHandler } = props;
     setMovieIdHandler(e.target.id);

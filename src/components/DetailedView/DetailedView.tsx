@@ -1,8 +1,53 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailedView.css";
+import PropTypes, { InferProps } from "prop-types";
 
-export default function DetailedView(props: any) {
+const DetailedPropTypes = {
+  movieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop_path: PropTypes.string,
+      genre_ids: PropTypes.array,
+      id: PropTypes.number.isRequired,
+      original_language: PropTypes.string,
+      original_title: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    })
+  ).isRequired,
+  movieDetails: {
+    adult: PropTypes.bool,
+    backdrop_path: PropTypes.string,
+    genre_ids: PropTypes.array,
+    id: PropTypes.number.isRequired,
+    original_language: PropTypes.string,
+    original_title: PropTypes.string,
+    overview: PropTypes.string,
+    popularity: PropTypes.number,
+    poster_path: PropTypes.string.isRequired,
+    release_date: PropTypes.string,
+    title: PropTypes.string,
+    video: PropTypes.bool,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+  },
+  genre: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.number.isRequired, name: PropTypes.string })
+  ).isRequired,
+  index: PropTypes.number.isRequired,
+  setMovieIdHandler: PropTypes.func.isRequired,
+  setIndexHandler: PropTypes.func.isRequired,
+};
+type DetailedTypes = InferProps<typeof DetailedPropTypes>;
+
+export default function DetailedView(props: DetailedTypes) {
   const {
     movieList,
     genre,

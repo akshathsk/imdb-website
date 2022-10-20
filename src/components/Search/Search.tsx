@@ -1,10 +1,40 @@
 import { useState } from "react";
 import Gallery from "../Gallery/Gallery";
 import "./Search.css";
+import PropTypes, { InferProps } from "prop-types";
 
-export default function Search(props: any) {
-  const [sortType, setSortType] = useState("title");
-  const [sortOrder, setSortOrder] = useState("ASC");
+const SearchPropTypes = {
+  filteredMovieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop_path: PropTypes.string,
+      genre_ids: PropTypes.array,
+      id: PropTypes.number.isRequired,
+      original_language: PropTypes.string,
+      original_title: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    })
+  ).isRequired,
+  handleSearchChange: PropTypes.func.isRequired,
+  handleOptionsChange: PropTypes.func.isRequired,
+  setMovieIdHandler: PropTypes.func.isRequired,
+  options: PropTypes.shape({
+    sortBy: PropTypes.string,
+    sortValue: PropTypes.string,
+  }).isRequired,
+};
+type SearchTypes = InferProps<typeof SearchPropTypes>;
+
+export default function Search(props: SearchTypes) {
+  const [sortType, setSortType] = useState<string>("title");
+  const [sortOrder, setSortOrder] = useState<string>("ASC");
 
   function onOptionValueChange(e: any) {
     const target = e.target;
