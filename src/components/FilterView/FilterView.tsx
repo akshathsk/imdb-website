@@ -3,11 +3,6 @@ import Gallery from "../Gallery/Gallery";
 import "./FilterView.css";
 import PropTypes, { InferProps } from "prop-types";
 
-interface GenreProps {
-  id?: number;
-  name: string;
-}
-
 const FilterPropTypes = {
   movieList: PropTypes.arrayOf(
     PropTypes.shape({
