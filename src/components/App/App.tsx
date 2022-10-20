@@ -115,6 +115,7 @@ export default function App(this: any) {
 
     setMovieDetails(movieList[idx]);
     setForceNav(!forceNav);
+    setFilteredMovieList([]);
   }
 
   function setIndexHandler(idx: any) {
@@ -138,6 +139,10 @@ export default function App(this: any) {
     }
   }, [forceNav, movieId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function clearSearchResults() {
+    setFilteredMovieList([]);
+  }
+
   return (
     <>
       {!loading && (
@@ -148,10 +153,14 @@ export default function App(this: any) {
             </header>
             <div className="link-container">
               <Link to="/mp2/">
-                <div className="link">SEARCH</div>
+                <div className="link" onClick={clearSearchResults}>
+                  SEARCH
+                </div>
               </Link>
               <Link to="/mp2/gallery">
-                <div className="link">GALLERY</div>
+                <div className="link" onClick={clearSearchResults}>
+                  GALLERY
+                </div>
               </Link>
             </div>
             <Routes>
