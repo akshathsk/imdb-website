@@ -66,10 +66,10 @@ export default function Search(props: SearchTypes) {
           >
             <option value="title">Title</option>
             <option value="popularity">Popularity</option>
-            <option value="vote_average">Vote Average</option>
           </select>
 
           <div>
+            &nbsp;&nbsp;&nbsp;
             <input
               type="radio"
               id="ASC"
@@ -82,6 +82,7 @@ export default function Search(props: SearchTypes) {
           </div>
 
           <div>
+            &nbsp;
             <input
               type="radio"
               id="DESC"

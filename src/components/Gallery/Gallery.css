@@ -14,11 +14,13 @@
 }
 
 .gallery-tile {
-  width: 250px;
-  height: 250px;
+  background-color: #0d213e;
+  backdrop-filter: blur(6px);
+  width: 260px;
+  height: 260px;
   padding: 10px;
   color: white;
-  margin: 0 auto;
+  margin: 10px;
   text-align: center;
 }
 
@@ -38,5 +40,5 @@
 }
 
 .image-container:first-child:hover {
-  transform: scale(1.25);
+  transform: scale(1.3);
 }

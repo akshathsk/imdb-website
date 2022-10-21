@@ -77,6 +77,11 @@ export default function Gallery(props: GalleryTypes) {
                 className="image-container"
               />
             </div>
+            <div className="text-container">
+              {" "}
+              <label> Popularity:&nbsp;</label>
+              {movie.popularity}{" "}
+            </div>
           </div>
         );
       })}
