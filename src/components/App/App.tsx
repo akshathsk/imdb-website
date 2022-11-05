@@ -64,8 +64,10 @@ export default function App(this: any) {
             }
           });
           setMovieList(arr);
-          // setFilteredMovieList(arr);
           if (movieList.length >= 99) {
+            // movieList.sort((a, b) =>
+            //   a.title! > b.title! ? 1 : b.title! > a.title! ? -1 : 0
+            // );
             setLoading(false);
           } else {
             getMovieList(count++);
